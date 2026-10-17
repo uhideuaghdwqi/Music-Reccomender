@@ -1,147 +1,388 @@
-* {
-  box-sizing: border-box;
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SoundScout - Music Recommendations</title>
 
-body {
-  margin: 0;
-  min-height: 100vh;
-  font-family: Arial, Helvetica, sans-serif;
-  color: var(--text);
-  background: var(--background);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 24px;
-}
+  <style>
+    :root {
+      --background: #f4f7f4;
+      --card: #ffffff;
+      --text: #17241b;
+      --muted: #647267;
+      --primary: #1f8f4d;
+      --primary-dark: #146936;
+      --border: #d8e2da;
+      --accent: #e3f3e8;
+    }
 
-.container {
-  width: 100%;
-  max-width: 720px;
-}
+    * {
+      box-sizing: border-box;
+    }
 
-header {
-  text-align: center;
-  margin-bottom: 28px;
-}
+    body {
+      margin: 0;
+      min-height: 100vh;
+      padding: 24px;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--text);
+      background: var(--background);
+    }
 
-.brand {
-  display: inline-block;
-  color: var(--primary);
-  font-size: 0.9rem;
-  font-weight: bold;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  margin-bottom: 12px;
-}
+    .container {
+      width: 100%;
+      max-width: 760px;
+      margin: 0 auto;
+    }
 
-h1 {
-  margin: 0 0 12px;
-  font-size: clamp(2rem, 5vw, 3.2rem);
-  line-height: 1.1;
-}
+    header {
+      padding: 40px 0 28px;
+      text-align: center;
+    }
 
-.description {
-  max-width: 540px;
-  margin: 0 auto;
-  color: var(--muted);
-  font-size: 1.05rem;
-  line-height: 1.6;
-}
+    .brand {
+      color: var(--primary);
+      font-size: 0.85rem;
+      font-weight: bold;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
 
-.card {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 18px;
-  padding: clamp(24px, 5vw, 40px);
-  box-shadow: 0 12px 30px rgba(23, 36, 27, 0.08);
-}
+    h1 {
+      margin: 12px 0;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+    }
 
-.mockup-label {
-  display: inline-block;
-  background: var(--accent);
-  color: var(--primary-dark);
-  border-radius: 999px;
-  padding: 6px 11px;
-  font-size: 0.75rem;
-  font-weight: bold;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  margin-bottom: 18px;
-}
+    .description {
+      max-width: 560px;
+      margin: 0 auto;
+      color: var(--muted);
+      line-height: 1.6;
+    }
 
-h2 {
-  margin: 0 0 8px;
-  font-size: 1.55rem;
-}
+    .card {
+      margin-bottom: 24px;
+      padding: 30px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      box-shadow: 0 12px 30px rgba(23, 36, 27, 0.08);
+    }
 
-.helper-text {
-  margin: 0 0 24px;
-  color: var(--muted);
-  line-height: 1.5;
-}
+    .mockup-label {
+      display: inline-block;
+      margin-bottom: 18px;
+      padding: 6px 11px;
+      color: var(--primary-dark);
+      background: var(--accent);
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
 
-label {
-  display: block;
-  margin-bottom: 8px;
-  font-weight: bold;
-}
+    h2 {
+      margin: 0 0 8px;
+    }
 
-textarea {
-  width: 100%;
-  min-height: 130px;
-  resize: vertical;
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 14px;
-  font: inherit;
-  color: var(--text);
-  background: #fbfdfb;
-}
+    .helper-text {
+      margin: 0 0 22px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
 
-textarea:focus {
-  outline: 3px solid rgba(31, 143, 77, 0.18);
-  border-color: var(--primary);
-}
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: bold;
+    }
 
-.examples {
-  margin: 10px 0 22px;
-  color: var(--muted);
-  font-size: 0.9rem;
-  line-height: 1.5;
-}
+    textarea {
+      width: 100%;
+      min-height: 130px;
+      padding: 14px;
+      resize: vertical;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: #fbfdfb;
+      color: var(--text);
+      font: inherit;
+    }
 
-button {
-  width: 100%;
-  border: 0;
-  border-radius: 10px;
-  padding: 14px 18px;
-  background: var(--primary);
-  color: #ffffff;
-  font: inherit;
-  font-weight: bold;
-  cursor: pointer;
-}
+    textarea:focus {
+      outline: 3px solid rgba(31, 143, 77, 0.18);
+      border-color: var(--primary);
+    }
 
-button:hover {
-  background: var(--primary-dark);
-}
+    .examples {
+      margin: 10px 0 22px;
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
 
-button:focus {
-  outline: 3px solid rgba(31, 143, 77, 0.25);
-  outline-offset: 2px;
-}
+    button {
+      width: 100%;
+      padding: 14px 18px;
+      border: 0;
+      border-radius: 10px;
+      background: var(--primary);
+      color: white;
+      font: inherit;
+      font-weight: bold;
+      cursor: pointer;
+    }
 
-.note {
-  margin: 18px 0 0;
-  color: var(--muted);
-  font-size: 0.82rem;
-  line-height: 1.5;
-  text-align: center;
-}
+    button:hover {
+      background: var(--primary-dark);
+    }
 
-footer {
-  margin-top: 20px;
-  color: var(--muted);
-  font-size: 0.85rem;
-  text-align: center;
-}
+    .note {
+      margin: 18px 0 0;
+      color: var(--muted);
+      font-size: 0.82rem;
+      line-height: 1.5;
+      text-align: center;
+    }
+
+    #recommendations {
+      display: none;
+    }
+
+    .song {
+      margin-top: 16px;
+      padding: 18px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: #fbfdfb;
+    }
+
+    .song h3 {
+      margin: 0 0 5px;
+    }
+
+    .song p {
+      margin: 0 0 16px;
+      color: var(--muted);
+    }
+
+    .rating-label {
+      margin-bottom: 8px;
+      font-size: 0.9rem;
+      font-weight: bold;
+    }
+
+    .rating-buttons {
+      display: grid;
+      grid-template-columns: repeat(10, 1fr);
+      gap: 5px;
+    }
+
+    .rating-buttons button {
+      padding: 9px 0;
+      background: #e7eee9;
+      color: var(--text);
+      font-size: 0.85rem;
+    }
+
+    .rating-buttons button:hover,
+    .rating-buttons button.selected {
+      background: var(--primary);
+      color: white;
+    }
+
+    .success-message {
+      display: none;
+      margin-top: 20px;
+      padding: 14px;
+      border-radius: 10px;
+      background: var(--accent);
+      color: var(--primary-dark);
+      text-align: center;
+      font-weight: bold;
+    }
+
+    footer {
+      padding: 8px 0 20px;
+      color: var(--muted);
+      font-size: 0.85rem;
+      text-align: center;
+    }
+
+    @media (max-width: 500px) {
+      .card {
+        padding: 22px;
+      }
+
+      .rating-buttons {
+        gap: 3px;
+      }
+
+      .rating-buttons button {
+        padding: 8px 0;
+        font-size: 0.75rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="container">
+    <header>
+      <div class="brand">SoundScout</div>
+
+      <h1>Find music you’ll love</h1>
+
+      <p class="description">
+        Enter songs or a playlist you already enjoy. SoundScout will suggest new music based on your taste.
+      </p>
+    </header>
+
+    <section class="card">
+      <div class="mockup-label">Mockup — Spotify connection not active</div>
+
+      <h2>Start with music you like</h2>
+
+      <p class="helper-text">
+        Add song names, artists, Spotify links, or a playlist link.
+      </p>
+
+      <form id="musicForm">
+        <label for="musicInput">Songs or Spotify playlist</label>
+
+        <textarea
+          id="musicInput"
+          placeholder="Example:
+Blonde by Frank Ocean
+Pink + White by Frank Ocean
+https://open.spotify.com/playlist/..."
+        ></textarea>
+
+        <p class="examples">
+          You can enter one song, multiple songs, or an entire playlist.
+        </p>
+
+        <button type="submit">Generate Recommendations</button>
+      </form>
+
+      <p class="note">
+        This is a front-end mockup. It does not connect to Spotify yet.
+      </p>
+    </section>
+
+    <section id="recommendations" class="card">
+      <h2>Your Recommendations</h2>
+
+      <p class="helper-text">
+        Rate each song from 1 to 10. Your ratings can help improve future recommendations.
+      </p>
+
+      <div class="song">
+        <h3>Pink + White</h3>
+        <p>Frank Ocean</p>
+
+        <div class="rating-label">How much do you like this song?</div>
+
+        <div class="rating-buttons">
+          <button type="button">1</button>
+          <button type="button">2</button>
+          <button type="button">3</button>
+          <button type="button">4</button>
+          <button type="button">5</button>
+          <button type="button">6</button>
+          <button type="button">7</button>
+          <button type="button">8</button>
+          <button type="button">9</button>
+          <button type="button">10</button>
+        </div>
+      </div>
+
+      <div class="song">
+        <h3>Japanese Denim</h3>
+        <p>Daniel Caesar</p>
+
+        <div class="rating-label">How much do you like this song?</div>
+
+        <div class="rating-buttons">
+          <button type="button">1</button>
+          <button type="button">2</button>
+          <button type="button">3</button>
+          <button type="button">4</button>
+          <button type="button">5</button>
+          <button type="button">6</button>
+          <button type="button">7</button>
+          <button type="button">8</button>
+          <button type="button">9</button>
+          <button type="button">10</button>
+        </div>
+      </div>
+
+      <div class="song">
+        <h3>Get You</h3>
+        <p>Daniel Caesar featuring Kali Uchis</p>
+
+        <div class="rating-label">How much do you like this song?</div>
+
+        <div class="rating-buttons">
+          <button type="button">1</button>
+          <button type="button">2</button>
+          <button type="button">3</button>
+          <button type="button">4</button>
+          <button type="button">5</button>
+          <button type="button">6</button>
+          <button type="button">7</button>
+          <button type="button">8</button>
+          <button type="button">9</button>
+          <button type="button">10</button>
+        </div>
+      </div>
+
+      <div id="successMessage" class="success-message">
+        Your ratings were saved for this mockup.
+      </div>
+    </section>
+
+    <footer>
+      SoundScout helps music lovers discover their next favorite song.
+    </footer>
+  </main>
+
+  <script>
+    const musicForm = document.getElementById("musicForm");
+    const musicInput = document.getElementById("musicInput");
+    const recommendations = document.getElementById("recommendations");
+    const successMessage = document.getElementById("successMessage");
+
+    musicForm.addEventListener("submit", function(event) {
+      event.preventDefault();
+
+      if (musicInput.value.trim() === "") {
+        alert("Please enter at least one song or playlist.");
+        return;
+      }
+
+      recommendations.style.display = "block";
+      recommendations.scrollIntoView({
+        behavior: "smooth"
+      });
+    });
+
+    const ratingButtons = document.querySelectorAll(".rating-buttons button");
+
+    ratingButtons.forEach(function(button) {
+      button.addEventListener("click", function() {
+        const buttonGroup = button.parentElement;
+        const buttonsInGroup = buttonGroup.querySelectorAll("button");
+
+        buttonsInGroup.forEach(function(currentButton) {
+          currentButton.classList.remove("selected");
+        });
+
+        button.classList.add("selected");
+        successMessage.style.display = "block";
+      });
+    });
+  </script>
+</body>
+</html>
